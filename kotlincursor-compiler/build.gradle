@@ -1,0 +1,18 @@
+import org.gradle.internal.jvm.Jvm
+
+apply plugin: 'kotlin'
+
+dependencies {
+    compile project(":kotlincursor-api")
+
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile "com.google.auto.service:auto-service:1.0-rc2"
+    kapt "com.google.auto.service:auto-service:1.0-rc2"
+    compile "com.squareup:kotlinpoet:0.2.0"
+
+    testCompile "junit:junit:4.12"
+    testCompile "com.google.testing.compile:compile-testing:0.11"
+    testCompile "com.google.truth:truth:0.33"
+    testCompile "com.google.guava:guava:22.0"
+    testCompile files(Jvm.current().getToolsJar())
+}

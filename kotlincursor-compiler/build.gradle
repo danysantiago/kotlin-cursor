@@ -16,3 +16,5 @@ dependencies {
     testCompile "com.google.guava:guava:22.0"
     testCompile files(Jvm.current().getToolsJar())
 }
+
+apply from: rootProject.file('gradle/maven-push.gradle')

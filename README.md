@@ -74,6 +74,7 @@ Add a Gradle dependency:
 compile 'com.github.danysantiago:kotlincursor-api:0.1.0'
 kapt 'com.github.danysantiago:kotlincursor-compiler:0.1.0'
 ```
+Snapshots of the development version are available in [Sonatype's `snapshots` repository][snap].
 
 ## Thanks
 
@@ -85,4 +86,5 @@ based on.
  [data-class]: https://kotlinlang.org/docs/reference/data-classes.html
  [gabriel]: https://github.com/gabrielittner
  [auto-cursor]: https://github.com/gabrielittner/auto-value-cursor
+ [snap]: https://oss.sonatype.org/content/repositories/snapshots/
 

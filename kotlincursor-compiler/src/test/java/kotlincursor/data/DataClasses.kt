@@ -61,3 +61,10 @@ data class NullableAdapterData(@ColumnAdapter(SimpleData.ColumnAdapter::class) v
 
 @KCursorData
 data class InvalidData(val invalidProperty: List<String>)
+
+@KCursorData
+data class AccompaniedData(val a: Int) {
+    companion object {
+        @JvmStatic val TAG = "AccompaniedData"
+    }
+}

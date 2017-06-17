@@ -2,6 +2,7 @@ package kotlincursor.processor
 
 import com.google.common.truth.Truth.assertThat
 import com.google.testing.compile.CompilationRule
+import kotlincursor.data.AccompaniedData
 import kotlincursor.data.AdapterData
 import kotlincursor.data.InvalidData
 import kotlincursor.data.NestedCursorData
@@ -290,5 +291,31 @@ class KCursorDataProcessorTest {
         } catch (e: TestMessager.ErrorMsgException) {
             assertThat(e.element!!.simpleName.toString()).isEqualTo("invalidProperty")
         }
+    }
+
+    @Test
+    fun companionObject() {
+        val expected = """
+                |package kotlincursor.data
+                |
+                |import android.content.ContentValues
+                |import android.database.Cursor
+                |
+                |fun AccompaniedData.toContentValues(): ContentValues {
+                |  val values = android.content.ContentValues()
+                |  values.put("a", a)
+                |  return values
+                |}
+                |
+                |fun Cursor.toAccompaniedData(): AccompaniedData {
+                |  val a = this.getInt(this.getColumnIndexOrThrow("a"))
+                |  return AccompaniedData(a)
+                |}
+                |""".trimMargin()
+
+        val actual = KCursorDataClass(messager, elements, types).generateKotlinFile(
+                elements.getTypeElement(AccompaniedData::class.java.canonicalName))
+
+        assertThat(actual.toString()).isEqualTo(expected)
     }
 }

@@ -7,6 +7,7 @@ import com.squareup.kotlinpoet.KotlinFile
 import com.squareup.kotlinpoet.TypeName
 import javax.annotation.processing.Messager
 import javax.lang.model.element.ElementKind
+import javax.lang.model.element.Modifier
 import javax.lang.model.element.TypeElement
 import javax.lang.model.element.VariableElement
 import javax.lang.model.util.Elements
@@ -24,7 +25,9 @@ class KCursorDataClass(
         val fileName = CLASS_FILE_PREFIX + classElement.simpleName.toString()
 
         val properties = classElement.enclosedElements
-                .filter { it.kind == ElementKind.FIELD && it is VariableElement }
+                .filter { it.kind == ElementKind.FIELD
+                        && !it.modifiers.contains(Modifier.STATIC)
+                        && it is VariableElement }
                 .map { ColumnProperty(it as VariableElement) }
 
         return KotlinFile.builder(packageName, fileName)

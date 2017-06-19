@@ -71,8 +71,8 @@ class CatListAdapter : ColumnTypeAdapter<List<Cat>> {
 Add a Gradle dependency:
 
 ```groovy
-compile 'com.github.danysantiago:kotlincursor-api:0.1.0'
-kapt 'com.github.danysantiago:kotlincursor-compiler:0.1.0'
+compile 'com.github.danysantiago:kotlincursor-api:0.1.1'
+kapt 'com.github.danysantiago:kotlincursor-compiler:0.1.1'
 ```
 Snapshots of the development version are available in [Sonatype's `snapshots` repository][snap].
 
